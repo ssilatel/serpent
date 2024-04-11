@@ -132,6 +132,14 @@ int main(int argc, char** argv)
         }
     }
 
+    free(apple);
+    SnakeCell* tmp;
+    while (snake != NULL)
+    {
+        tmp = snake;
+        snake = snake->next;
+        free(tmp);
+    }
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
@@ -372,6 +380,7 @@ void updateApple(Apple* apple)
     {
         y += TILE_SIZE - remainder;
     }
+
     apple->x = x;
     apple->y = y;
 }
